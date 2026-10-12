@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="100%" height="100%">
+  <defs>
+    <radialGradient id="deskGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#1B1B20" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#0B0B0D" stop-opacity="1"/>
+    </radialGradient>
+    <linearGradient id="metalCopper" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF8A78"/>
+      <stop offset="50%" stop-color="#FF7139"/>
+      <stop offset="100%" stop-color="#8C250A"/>
+    </linearGradient>
+    <linearGradient id="metalGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFE082"/>
+      <stop offset="60%" stop-color="#FFC857"/>
+      <stop offset="100%" stop-color="#B37D14"/>
+    </linearGradient>
+    <linearGradient id="warmBase" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#353238"/>
+      <stop offset="100%" stop-color="#131316"/>
+    </linearGradient>
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="16" stdDeviation="20" flood-color="#000" flood-opacity="0.6"/>
+    </filter>
+  </defs>
+
+  <rect width="800" height="800" fill="url(#deskGlow)"/>
+
+  <!-- Orbital Track -->
+  <circle cx="400" cy="400" r="280" fill="none" stroke="#FF7139" stroke-opacity="0.12" stroke-width="2" stroke-dasharray="10 15"/>
+  <circle cx="400" cy="400" r="220" fill="none" stroke="#FFC857" stroke-opacity="0.2" stroke-width="2"/>
+
+  <!-- Pedestal Platform -->
+  <ellipse cx="400" cy="620" rx="260" ry="45" fill="url(#warmBase)" filter="url(#softShadow)"/>
+  <ellipse cx="400" cy="610" rx="230" ry="35" fill="#242126" stroke="#353238" stroke-width="2"/>
+
+  <!-- 3D Calendar Block (Left) -->
+  <g filter="url(#softShadow)">
+    <polygon points="260,380 340,320 340,540 260,590" fill="#242126" stroke="#353238" stroke-width="2"/>
+    <polygon points="340,320 460,340 460,555 340,540" fill="#FAF5ED" stroke="#D9C9B4" stroke-width="2"/>
+    <polygon points="260,380 340,320 460,340 380,395" fill="url(#metalCopper)"/>
+    <!-- Calendar Rings -->
+    <path d="M 310,340 C 310,300 330,300 330,340" fill="none" stroke="url(#metalGold)" stroke-width="6"/>
+    <path d="M 370,345 C 370,305 390,305 390,345" fill="none" stroke="url(#metalGold)" stroke-width="6"/>
+    <path d="M 430,350 C 430,310 450,310 450,350" fill="none" stroke="url(#metalGold)" stroke-width="6"/>
+    <!-- Check icon mark on calendar -->
+    <circle cx="400" cy="450" r="30" fill="#FF7139" fill-opacity="0.15"/>
+    <path d="M 385 450 L 396 462 L 418 438" fill="none" stroke="url(#metalCopper)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- Precision Analog Clock (Right) -->
+  <g filter="url(#softShadow)">
+    <circle cx="530" cy="440" r="95" fill="#1B1B20" stroke="url(#metalGold)" stroke-width="6"/>
+    <circle cx="530" cy="440" r="82" fill="#131316"/>
+    <!-- Hour Ticks -->
+    <line x1="530" y1="365" x2="530" y2="377" stroke="#FFC857" stroke-width="4"/>
+    <line x1="530" y1="503" x2="530" y2="515" stroke="#FFC857" stroke-width="4"/>
+    <line x1="455" y1="440" x2="467" y2="440" stroke="#FFC857" stroke-width="4"/>
+    <line x1="593" y1="440" x2="605" y2="440" stroke="#FFC857" stroke-width="4"/>
+    <!-- Clock Hands at 10:10 -->
+    <line x1="530" y1="440" x2="495" y2="405" stroke="url(#metalCopper)" stroke-width="5" stroke-linecap="round"/>
+    <line x1="530" y1="440" x2="560" y2="390" stroke="#FAF5ED" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="530" cy="440" r="7" fill="url(#metalGold)"/>
+  </g>
+
+  <!-- Floating Spheres and Accents -->
+  <circle cx="220" cy="320" r="24" fill="url(#metalGold)" filter="url(#softShadow)"/>
+  <circle cx="590" cy="280" r="18" fill="url(#metalCopper)" filter="url(#softShadow)"/>
+  <circle cx="480" cy="220" r="14" fill="#FAF5ED" filter="url(#softShadow)"/>
+</svg>

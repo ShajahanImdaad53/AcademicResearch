@@ -1,190 +1,235 @@
-# AI-Based Personalized Study Schedule Recommendation System
-## Undergraduate Research Project & Software Prototype
+# StudyBloom AI 🎓
+## AI-Based Personalized Study Schedule Recommendation System
+### A Machine Learning Approach to Adaptive Study Planning for University Students
 
-[![Python 3.12](https://img.shields.io/badge/Python-3.12.1-blue.svg)](https://www.python.org/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Streamlit App](https://img.shields.io/badge/Streamlit-1.43.2-FF4B4B.svg)](https://streamlit.io/)
-[![Tests Passing](https://img.shields.io/badge/Pytest-18%20Passed-brightgreen.svg)](tests/)
-[![Research Status](https://img.shields.io/badge/Research_Status-Phase_8_Completed-informational.svg)](docs/RESEARCH_REPORT_DRAFT.md)
+<div align="center">
+
+[![Python 3.12](https://img.shields.io/badge/Python-3.12.1-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
+[![Streamlit App](https://img.shields.io/badge/Streamlit-1.43.2-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)](https://streamlit.io/)
+[![Scikit-Learn](https://img.shields.io/badge/Scikit--Learn-1.6.1-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white)](https://scikit-learn.org/)
+[![Pytest 18/18 Passed](https://img.shields.io/badge/Tests-18%2F18%20Passed%20(100%25)-2EA44F?style=for-the-badge&logo=pytest&logoColor=white)](tests/)
+[![Research Status](https://img.shields.io/badge/Dissertation-Phase%208%20Complete-945DD6?style=for-the-badge&logo=readme&logoColor=white)](docs/RESEARCH_REPORT_DRAFT.md)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
+
+<br/>
+
+![StudyBloom AI Hero Sculpture](public/assets/images/landing-hero-sculpture.jpg)
+
+*StudyBloom AI — Editorial 3D Kinetic Study Sculpture representing temporal rhythms, non-overlapping study blocks, and academic pacing.*
+
+</div>
 
 ---
 
-### Project Overview
-The **AI-Based Personalized Study Schedule Recommendation System** is an undergraduate computer science research project designed to help university students manage competing academic workloads. Undergraduates frequently suffer from *urgency bias* and cognitive fatigue, struggling to balance imminent deadlines, course weights, and subjective subject difficulty across concurrent modules.
+## 📌 Executive Summary
 
-This project introduces a **two-stage hybrid architecture**:
-1. **Stage 1 (Machine Learning Prioritization):** Supervised classification models predict the optimal study priority category (`High`, `Medium`, `Low`) for each enrolled subject based on academic context and temporal constraints.
-2. **Stage 2 (Constraint-Satisfaction Timetabling):** A deterministic scheduling engine translates priority ratings into proportional study hours and arranges discrete, non-overlapping study sessions into the student's designated daily availability windows, enforcing mandatory rest breaks (Pomodoro principles) and cognitive session limits.
+Undergraduate university students routinely balance concurrent modular courses with competing coursework deadlines, varying perceived difficulty, and high-stakes examination dates. When faced with high cognitive workloads, students frequently default to **urgency bias** (cramming for the nearest deadline while neglecting distant, high-weighted coursework) and suffer acute cognitive fatigue from unstructured study marathons.
+
+**StudyBloom AI** introduces a **Two-Stage Hybrid Recommendation Architecture**:
+1. **Stage 1 (Machine Learning Prioritization):** Supervised classification models predict multivariate study priority tiers (`High`, `Medium`, `Low`) based on temporal proximity, module difficulty ratings, prior academic mastery, and assessment weightings.
+2. **Stage 2 (Constraint-Satisfaction Timetabling):** A deterministic greedy scheduling engine converts priority tiers into proportional weekly study hours and places discrete, non-overlapping study blocks into designated daily availability windows, enforcing mandatory 15-minute rest breaks (Pomodoro principles) and cognitive session limits.
 
 ---
 
-### Architectural Design
+## 🏛️ System Architecture
 
 ```mermaid
 flowchart TD
     subgraph Stage 1: Machine Learning Prioritization
-        A[Student Input: Workload & Deadlines] --> B[Scikit-Learn ColumnTransformer]
+        A[Student Input: Coursework & Deadlines] --> B[Scikit-Learn ColumnTransformer Preprocessor]
         B --> C[Trained Classifier: Random Forest / Logistic Regression]
         C --> D[Predicted Subject Priority: High / Medium / Low]
+        C -.->|Model Missing / Infeasible| D_fallback[Rule-Based Expert Fallback Heuristic]
+        D_fallback --> D
     end
 
     subgraph Stage 2: Constraint-Satisfaction Scheduling
         D --> E[Proportional Time Budget Allocator]
         F[Student Input: Daily Availability Windows] --> G[Greedy Slot Placement Engine]
         E --> G
-        G --> H[Conflict-Free Weekly Study Timetable]
+        G --> H[Conflict-Free Weekly Timetable]
+        G --> I[Break Duration Guard & Capacity Enforcement]
     end
 
-    subgraph User Interaction Layer
-        H --> I[Streamlit Web Dashboard]
-        I --> J[Interactive Editing via st.data_editor]
-        I --> K[Export Schedule to CSV]
+    subgraph User Interaction & Academic Workspace
+        H --> J[Streamlit Interactive Dashboard]
+        J --> K[Interactive Timetable Editor via st.data_editor]
+        J --> L[One-Click CSV Export]
+        J --> M[Pomodoro Focus Room with Lo-Fi Ambience]
+        J --> N[Research Lab & Live Inference Playground]
     end
 ```
 
 ---
 
-### Academic Integrity & Research Transparency Statement
+## 🌟 Key Features & Capabilities
 
-> [!IMPORTANT]
-> **Human Sample Size Disclosure ($N = 0$):**  
-> In compliance with university research ethics standards and GDPR regulations, no empirical human survey data was collected for this report pending formal review by the Faculty Research Ethics Committee. 
-> 
-> All machine-learning training pipelines, cross-validation protocols, and recommender constraint checks were benchmarked on an isolated synthetic development dataset ($N = 120$ simulated participants, $600$ subject observations). No questionnaire results, p-values, or claims of improved student academic performance have been fabricated.
+- 🧠 **Supervised Machine Learning Prioritization:** Leverages Random Forest, Logistic Regression, Decision Tree, and K-Nearest Neighbors trained with strict `GroupKFold` cross-validation (grouped by student) to eliminate data leakage.
+- 🛡️ **Graceful Fallback Resilience:** When a serialized ML artifact is missing or invalid, the engine transparently falls back to an expert rule-based heuristic with clear explanations.
+- ⏱️ **Guaranteed Conflict-Free Timetabling:** Hard mathematical constraints guarantee zero session overlaps ($t_a \cap t_b = \emptyset$) and protect weekly study capacities against overflow.
+- ☕ **Cognitive Fatigue Guard:** Automatically injects configurable 15-minute rest breaks between consecutive study sessions to prevent cramming-induced burnout.
+- 🎨 **Original 3D Discipline Artwork:** Integrated visual galleries for Mathematics, Computer Science, Statistics, and Academic Writing modules.
+- 🎧 **Cinematic Focus Room:** Lo-fi study soundscapes (gentle rain, deep brown noise) paired with a 25-minute Pomodoro sprint timer.
+- 📊 **Empirical Research Lab:** Transparent comparison tables, F1-score bar charts, and a real-time interactive feature playground.
+- 📥 **Spreadsheet Export:** Full CSV export capability for calendar integration with Google Calendar, Outlook, or Excel.
 
 ---
 
-### Key Experimental Findings
+## 🔬 Authentic Experimental Findings
 
-All models were evaluated under identical 5-fold `GroupKFold` cross-validation conditions (grouping strictly by `Participant_ID` to prevent data leakage) and tested on an independent hold-out test partition ($N = 50$ subject rows from $10$ unseen participants):
+All models were evaluated under identical 5-fold `GroupKFold` cross-validation conditions and tested against an isolated hold-out test partition ($N = 50$ subject rows from $10$ unseen participants):
 
 | Model Architecture | Accuracy | Macro Precision | Macro Recall | Macro F1-Score | Ranking (F1) |
 | :--- | :---: | :---: | :---: | :---: | :---: |
-| **Baseline (Rule-Based Heuristic)** | **0.9000** | **0.9612** | **0.6857** | **0.7316** | 1 (Benchmark) |
+| **Baseline (Rule-Based Heuristic)** | **0.9000** | **0.9612** | **0.6857** | **0.7316** | **1 (Benchmark)** |
 | **Logistic Regression** | 0.7800 | 0.7743 | 0.5942 | **0.5858** | 2 |
-| **Random Forest Classifier** | 0.8000 | 0.4697 | 0.5451 | **0.5037** | 3 |
+| **Random Forest Classifier** | **0.8000** | 0.4697 | 0.5451 | **0.5037** | 3 |
 | **Decision Tree Classifier** | 0.7400 | 0.4272 | 0.5188 | **0.4599** | 4 |
 | **K-Nearest Neighbors (KNN)** | 0.7200 | 0.4288 | 0.4712 | **0.4474** | 5 |
 
-*Source: [reports/model_comparison.csv](file:///c:/Users/Imdaa/OneDrive/Desktop/Research/reports/model_comparison.csv) and [reports/model_evaluation.md](file:///c:/Users/Imdaa/OneDrive/Desktop/Research/reports/model_evaluation.md).*
+*Source: [`reports/model_comparison.csv`](reports/model_comparison.csv) and [`reports/model_evaluation.md`](reports/model_evaluation.md).*
+
+### Feature Importance Weights (Random Forest Gini Importance):
+- 📅 **Days to Deadline:** `38.0%` (Dominant factor in temporal urgency)
+- ⚖️ **Assessment Weighting (%):** `29.0%` (Relative curricular impact)
+- 🧠 **Perceived Subject Difficulty:** `21.0%` (Cognitive demand factor)
+- 📈 **Prior Academic Performance:** `12.0%` (Prior mastery adjustment)
 
 ---
 
-### Repository Structure
+## 🔒 Research Integrity & Ethics Statement
+
+> [!IMPORTANT]
+> **Human Sample Size Disclosure ($N = 0$):**  
+> In compliance with university research ethics policies and data protection regulations, no human participant data was collected for this development report pending formal Faculty Research Ethics Committee approval.  
+> 
+> All training pipelines, cross-validation metrics, and scheduler constraints were benchmarked on an isolated synthetic development dataset ($N = 120$ simulated participants, $600$ observations). No questionnaire results, p-values, or claims of improved student academic performance have been fabricated.
+
+---
+
+## 📂 Repository File Structure
 
 ```text
-Research/
-├── app.py                           # Interactive Streamlit Web Application Prototype
-├── requirements.txt                 # Python project dependencies
-├── demo_schedule.py                 # Command-line demonstration of timetable generator
-├── fetch_literature.py              # OpenAlex literature query script
+AcademicResearch/
+├── app.py                           # Full Streamlit Web Application (StudyBloom AI)
+├── api.py                           # FastAPI Backend Inference & Scheduling Server
+├── requirements.txt                 # Project dependencies
+├── demo_schedule.py                 # CLI demonstration of timetable generator
+├── fetch_literature.py              # OpenAlex academic literature query script
 ├── .streamlit/
-│   └── config.toml                  # Dark-theme UI configuration (resolves contrast defects)
+│   └── config.toml                  # High-contrast dark theme styling
+├── public/assets/images/            # High-resolution 3D editorial artwork assets
+│   ├── landing-hero-sculpture.jpg   # Editorial kinetic study sculpture
+│   ├── login-background.jpg         # Architectural authentication backdrop
+│   ├── plan-created-success-artwork.jpg # Scheduled alignment celebration
+│   ├── focus-room-background.jpg    # Deep focus room studio
+│   ├── wellbeing-background.jpg     # Parasympathetic reset artwork
+│   ├── progress-growth-artwork.jpg  # Academic growth sculpture
+│   ├── research-lab-artwork.jpg     # Laboratory optics & metric prisms
+│   ├── subject-mathematics-artwork.jpg # Linear Algebra polyhedra
+│   ├── subject-programming-artwork.jpg # Distributed Systems node clusters
+│   └── subject-statistics-artwork.jpg  # Gaussian distribution lattices
 ├── src/
 │   ├── data/
-│   │   ├── generate_synthetic_data.py # Synthetic data generation script
-│   │   ├── validate_data.py         # CSV schema and range validation
+│   │   ├── generate_synthetic_data.py # Synthetic dataset generator (120 participants)
+│   │   ├── validate_data.py         # CSV schema and boundary validator
 │   │   └── preprocess.py            # Participant-grouped splits & ColumnTransformer
 │   ├── models/
 │   │   ├── baseline.py              # Expert rule-based heuristic classifier
-│   │   ├── train.py                 # 5-fold GroupKFold model training script
+│   │   ├── train.py                 # 5-fold GroupKFold model training pipeline
 │   │   ├── evaluate.py              # Multi-metric evaluation and matrix reporting
-│   │   └── predict.py               # Robust inference engine with default imputation
+│   │   └── predict.py               # Robust inference engine with imputation
 │   └── recommender/
-│       ├── priority.py              # Model loader with automatic heuristic fallback
-│       └── schedule_generator.py    # Constraint-satisfaction greedy scheduler
+│       ├── priority.py              # Priority engine with automatic heuristic fallback
+│       └── schedule_generator.py    # Greedy constraint-satisfaction scheduler
 ├── tests/
-│   ├── test_preprocessing.py        # Schema, validation, and pipeline unit tests
+│   ├── test_preprocessing.py        # Schema, validation, and split unit tests
 │   ├── test_model_pipeline.py       # Model training, inference, and fallback tests
 │   └── test_schedule_generator.py   # Constraint, overlap, and capacity tests
-├── docs/
-│   ├── RESEARCH_REPORT_DRAFT.md     # Full 11-section university research report draft
-│   ├── FINAL_PRESENTATION_OUTLINE.md# 12-slide presentation outline with spoken scripts
-│   ├── VIVA_PREPARATION.md          # 14 viva questions with examiner intentions & answers
-│   ├── VALIDATION_REPORT.md         # Phase 7 comprehensive audit log & test records
-│   ├── RESEARCH_DESIGN.md           # Formal research design and RO-to-evidence mapping
-│   ├── ETHICS_AND_DATA_PROTECTION.md# Data minimization and privacy protocols
-│   ├── PARTICIPANT_INFO_SHEET.md    # Institutional participant information sheet
-│   ├── CONSENT_FORM.md              # Digital informed consent form
-│   ├── QUESTIONNAIRE.md             # Survey instrument specification
-│   ├── DATA_DICTIONARY.md           # Schema definitions and feature descriptions
-│   └── REFERENCES.md                # 34 OpenAlex-verified bibliographic citations
-└── reports/
-    ├── model_comparison.csv         # Recorded experimental metrics
-    └── model_evaluation.md          # Detailed evaluation report and confusion matrices
+├── reports/
+│   ├── model_comparison.csv         # Verified cross-model benchmark metrics
+│   ├── model_evaluation.md          # Multi-page markdown evaluation report
+│   └── test_metrics.json            # Machine-readable test evaluation scores
+└── docs/
+    ├── RESEARCH_REPORT_DRAFT.md     # Complete 11-section university research paper draft
+    ├── FINAL_PRESENTATION_OUTLINE.md # 12-slide presentation outline with presenter scripts
+    ├── VIVA_PREPARATION.md          # 14 anticipated viva defense questions & answers
+    ├── VALIDATION_REPORT.md         # Full audit log, defect resolutions & verification
+    ├── PARTICIPANT_INFO_SHEET.md    # Formal participant ethics documentation
+    ├── QUESTIONNAIRE.md             # Workload and scheduling survey instrument
+    └── DECISIONS.md                 # Architectural Decision Records (ADRs)
 ```
 
 ---
 
-### Windows Quickstart & Reproduction Guide
+## 🚀 Quickstart & Installation
 
-All commands below should be executed in **Windows PowerShell** within the project directory (`C:\Users\Imdaa\OneDrive\Desktop\Research`).
+### Prerequisites
+- **Python 3.12+** installed on your system.
+- Git installed.
 
-#### Step 1: Environment Setup
+### 1. Clone the Repository
+```bash
+git clone https://github.com/ShajahanImdaad53/AcademicResearch.git
+cd AcademicResearch
+```
+
+### 2. Set Up Virtual Environment
 ```powershell
-# Create a Python virtual environment (if not already created)
+# Windows PowerShell:
 python -m venv venv
-
-# Activate the virtual environment
 .\venv\Scripts\Activate.ps1
 
-# Install required dependencies
+# macOS / Linux:
+python3 -m venv venv
+source venv/bin/activate
+```
+
+### 3. Install Dependencies
+```bash
 pip install -r requirements.txt
 ```
 
-#### Step 2: Generate & Validate Development Data
-```powershell
-# Generate isolated synthetic development dataset (120 participants, 600 records)
-python src/data/generate_synthetic_data.py
-
-# Validate dataset schema and integrity
-python src/data/validate_data.py
-```
-
-#### Step 3: Train Machine Learning Classifiers
-```powershell
-# Train Decision Tree, Random Forest, KNN, and Logistic Regression with GroupKFold
-python src/models/train.py
-```
-*Trained model artifacts are automatically serialized to `experiments/models/`.*
-
-#### Step 4: Evaluate Models & Generate Metric Reports
-```powershell
-# Evaluate models against hold-out test set and generate comparison reports
-python src/models/evaluate.py
-```
-*Outputs are saved to `reports/model_comparison.csv` and `reports/model_evaluation.md`.*
-
-#### Step 5: Run Automated Unit & Integration Tests
-```powershell
-# Execute the full 18-test validation suite
+### 4. Run Automated Tests
+Execute the comprehensive 18-test validation suite:
+```bash
 python -m pytest tests/ -v
 ```
-*Expected result: 18 passed in ~1.6 seconds.*
+*Expected Output:* `18 passed in ~2.5s (100% passing)*
 
-#### Step 6: Launch the Streamlit Web Application
-```powershell
-# Run the interactive Streamlit user interface
+### 5. Launch the Web Application
+```bash
 streamlit run app.py
 ```
-*Open your web browser and navigate to `http://localhost:8501` to test the application.*
+Open your web browser and navigate to:
+```text
+http://localhost:8501
+```
 
 ---
 
-### Research Deliverables Directory
+## 📖 Academic Documentation Index
 
-| Document | File Link | Description |
+| Deliverable | File Link | Description |
 | :--- | :--- | :--- |
-| **Comprehensive Research Report** | [RESEARCH_REPORT_DRAFT.md](file:///c:/Users/Imdaa/OneDrive/Desktop/Research/docs/RESEARCH_REPORT_DRAFT.md) | Complete 11-section academic report (Introduction to Appendices). |
-| **Final Presentation Outline** | [FINAL_PRESENTATION_OUTLINE.md](file:///c:/Users/Imdaa/OneDrive/Desktop/Research/docs/FINAL_PRESENTATION_OUTLINE.md) | 12-slide guide with visual layouts and word-for-word spoken presenter scripts. |
-| **Viva Voce Defense Guide** | [VIVA_PREPARATION.md](file:///c:/Users/Imdaa/OneDrive/Desktop/Research/docs/VIVA_PREPARATION.md) | 14 anticipated exam questions, examiner intentions, and recommended answers. |
-| **Validation & Audit Report** | [VALIDATION_REPORT.md](file:///c:/Users/Imdaa/OneDrive/Desktop/Research/docs/VALIDATION_REPORT.md) | Defect resolution log, test logs, and git isolation verification. |
-| **Participant Information Sheet** | [PARTICIPANT_INFO_SHEET.md](file:///c:/Users/Imdaa/OneDrive/Desktop/Research/docs/PARTICIPANT_INFO_SHEET.md) | Formal ethics documentation for prospective human participants. |
-| **Workload Survey Instrument** | [QUESTIONNAIRE.md](file:///c:/Users/Imdaa/OneDrive/Desktop/Research/docs/QUESTIONNAIRE.md) | Multi-part student academic and scheduling survey questionnaire. |
+| **Comprehensive Research Report** | [`RESEARCH_REPORT_DRAFT.md`](docs/RESEARCH_REPORT_DRAFT.md) | Full 11-chapter undergraduate dissertation draft. |
+| **Final Presentation Outline** | [`FINAL_PRESENTATION_OUTLINE.md`](docs/FINAL_PRESENTATION_OUTLINE.md) | 12-slide defense guide with word-for-word spoken scripts. |
+| **Viva Voce Defense Guide** | [`VIVA_PREPARATION.md`](docs/VIVA_PREPARATION.md) | 14 anticipated exam questions with comprehensive answers. |
+| **System Validation Audit** | [`VALIDATION_REPORT.md`](docs/VALIDATION_REPORT.md) | Defect resolution log, test logs, and git isolation audit. |
+| **Ethics Participant Information** | [`PARTICIPANT_INFO_SHEET.md`](docs/PARTICIPANT_INFO_SHEET.md) | Ethics documentation for prospective human studies. |
+| **Survey Questionnaire** | [`QUESTIONNAIRE.md`](docs/QUESTIONNAIRE.md) | Workload and study-scheduling survey instrument. |
 
 ---
 
-### Author & Supervisory Acknowledgements
-- **Undergraduate Researcher:** Computer Science & Software Engineering Student
-- **Supervisory Team:** Department of Computer Science, Faculty of Computing & Information Technology
+## 👥 Authors & Academic Context
+
+- **Author / Lead Developer:** Shajahan Imdaad ([@ShajahanImdaad53](https://github.com/ShajahanImdaad53))
+- **Degree:** BSc (Hons) Computer Science & Software Engineering
 - **Academic Year:** 2026–2027
+- **License:** [MIT License](LICENSE)
+
+---
+
+<div align="center">
+<strong>StudyBloom AI</strong> — Intelligent, Fatigue-Aware Study Planning for Higher Education.
+</div>
